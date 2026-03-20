@@ -1,0 +1,31 @@
+import random
+
+# Configurações iniciais
+numero_secreto = random.randint(1, 10)
+tentativas_restantes = 5
+tentativa_atual = 1
+
+print("--- Jogo de Adivinhação ---")
+print("Tente adivinhar o número entre 1 e 10.")
+
+# Usando while para permitir a alteração dinâmica das tentativas
+while tentativa_atual <= tentativas_restantes:
+    print(f"\nTentativa {tentativa_atual} de {tentativas_restantes}")
+    chute = int(input("Digite seu palpite: "))
+
+    if chute == numero_secreto:
+        print(f"Parabéns! Você acertou o número {numero_secreto}!")
+        break
+    else:
+        # Lógica do bônus: diferença de apenas 1 unidade
+        # abs() garante que o resultado seja positivo (ex: 5-4=1 ou 4-5=-1 vira 1)
+        if abs(chute - numero_secreto) == 1:
+            tentativas_restantes += 1
+            print("Você chegou MUITO perto! Ganhou +1 tentativa de bônus.")
+        
+        print("Errou!")
+
+    tentativa_atual += 1
+
+if chute != numero_secreto:
+    print(f"\nSuas chances acabaram. O número era {numero_secreto}.")
